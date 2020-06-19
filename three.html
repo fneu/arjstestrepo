@@ -125,40 +125,64 @@ function initialize()
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 	function onError(xhr) { console.log( 'An error happened' ); }
 	
-	<!-- new THREE.MTLLoader() -->
-	<!-- 	.setPath( 'models/' ) -->
-	<!-- 	.load( 'fish-2.mtl', function ( materials ) { -->
-	<!-- 		materials.preload(); -->
-	<!-- 		new THREE.OBJLoader() -->
-	<!-- 			.setMaterials( materials ) -->
-	<!-- 			.setPath( 'models/' ) -->
-	<!-- 			.load( 'fish-2.obj', function ( group ) { -->
-	<!-- 				mesh0 = group.children[0]; -->
-	<!-- 				mesh0.material.side = THREE.DoubleSide; -->
-	<!-- 				mesh0.position.y = 0.25; -->
-	<!-- 				mesh0.scale.set(0.25,0.25,0.25); -->
-	<!-- 				markerRoot1.add(mesh0); -->
-	<!-- 			}, onProgress, onError ); -->
-	<!-- 	}); -->
+	new THREE.MTLLoader()
+		.setPath( 'models/' )
+		.load( 'Birthday_Cake.mtl', function ( materials ) {
+			materials.preload();
+			new THREE.OBJLoader()
+				.setMaterials( materials )
+				.setPath( 'models/' )
+				.load( 'Birthday_Cake.obj', function ( group ) {
+					// mesh0 = group.children[0];
+					// mesh0.material.side = THREE.DoubleSide;
+                                        mesh0 = new THREE.Object3D();
+                                        mesh0.add(group);
+					mesh0.position.y = 0;
+                                        mesh0.rotation.set(-1.5708, 0, 0)
+					mesh0.scale.set(0.025,0.025,0.025);
+					markerRoot1.add(mesh0);
+				}, onProgress, onError );
+		});
+
+        <!-- new THREE.OBJLoader() -->
+        <!--   .setPath('models/') -->
+        <!--   .load('Birthday_Cake.obj', function (group) { -->
+        <!--     mesh1 = group.children[0]; -->
+        <!--     mesh1.material.side = THREE.DoubledSide; -->
+        <!--     mesh1.position.y = 0; -->
+        <!--     mesh1.scale.set(1,1,1); -->
+        <!--     markerRoot1.add(mesh1);}, onProgress, onError); -->
 
         <!-- new THREE.OBJLoader() -->
         <!--   .setPath('models/') -->
         <!--   .load('robot.obj', function (group) { -->
         <!--     mesh1 = group.children[0]; -->
         <!--     mesh1.material.side = THREE.DoubledSide; -->
-        <!--     mesh1.position.y = 0; -->
+        <!--     mesh1.position.y = 1; -->
+        <!--     mesh1.rotation.set(0, 0, 1.5708); -->
         <!--     mesh1.scale.set(0.001,0.001,0.001); -->
         <!--     markerRoot1.add(mesh1);}, onProgress, onError); -->
 
-        new THREE.OBJLoader()
-          .setPath('models/')
-          .load('robot.obj', function (group) {
-            mesh1 = group.children[0];
-            mesh1.material.side = THREE.DoubledSide;
-            mesh1.position.y = 1;
-            mesh1.rotation.set(0, 0, 1.5708);
-            mesh1.scale.set(0.001,0.001,0.001);
-            markerRoot1.add(mesh1);}, onProgress, onError);
+        <!-- new THREE.MTLLoader() -->
+        <!--   .setPath('models/') -->
+        <!--   .load('Birthday_Cake.mtl', function(materials){ -->
+        <!--     materials.preload(); -->
+        <!--     new THREE.OBJLoader() -->
+        <!--       .setMaterials(materials) -->
+        <!--       .setPath('models/') -->
+        <!--       .load('Birthday_Cake.obj', function ( object ) { -->
+        <!--         // set loaded cake object to cakeModel and set initial position and rotation. -->
+        <!--         // IMPORTANT: for position.z and x I applied those values to make sure --> 
+        <!--         // the position of candles match with generated candle flame. -->
+        <!--         cakeModel.add( object ); -->
+        <!--         cakeModel.rotation.x = -Math.PI / 2; -->
+        <!--         cakeModel.position.y = -20 -->
+        <!--         cakeModel.position.z = -0.5; -->
+        <!--         cakeModel.position.x = -0.2; -->
+                <!-- // add generated cakemodel to group. -->
+                <!-- markerRoot1.add(cakeModel); -->
+              <!-- }); -->
+          <!-- }) -->
 }
 
 
